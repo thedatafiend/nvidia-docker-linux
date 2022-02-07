@@ -93,6 +93,13 @@ The NGC catalog are official containers supported by Nvidia and developers for r
 
 1. With Docker 19.03+, running the following command should give us a TF2 installation to run:
 
-```bash
-docker run --gpus all -it --rm -v /home/ryan/code/nvidia-docker-linux/data:container_dir nvcr.io/nvidia/tensorflow:21.12-tf2-py3 bash
-```
+   ```bash
+   docker run --gpus all -it --rm -v /path/to/local/dir:/container_dir nvcr.io/nvidia/tensorflow:21.12-tf2-py3 bash
+   ```
+   Once in the command line, you can run the following within the `/workspace/cnn/` dir to test your GPU for training:
+
+   ```bash
+   python resnet.py --num_iter=90 --iter_unit=epoch \
+   --precision=fp16 --display_every=100 \
+   --export_dir=/tmp --batch_size=64
+   ```
